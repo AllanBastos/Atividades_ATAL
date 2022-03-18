@@ -14,17 +14,16 @@ public class ResolveSudoku {
     private static final int VALOR_MINIMO = 1;
 
 
-
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         List<List<List<Integer>>> listTabuleiros = new ArrayList<>();
 
-
+        sc.nextLine();
         for (int tabelas = 0; tabelas < n; tabelas++) {
             List<List<Integer>> matriz = new ArrayList<>();
-            sc.nextLine();
+
             for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
                var linha = Arrays.stream(sc.nextLine().split("")).mapToInt(Integer::parseInt).toArray();
                ArrayList<Integer> linha2 = (ArrayList<Integer>) Arrays.stream(linha).boxed().collect(Collectors.toList());
@@ -34,22 +33,23 @@ public class ResolveSudoku {
         }
 
 
-//        for (Integer[][] soduku : listTabuleiros) {
-//            if(resolve(soduku)){
-//                imprimirSoduku(soduku);
-//            }else{
-//                System.out.println("Não deu :(");
-//            }
-//        }
+
+        for (List<List<Integer>> soduku : listTabuleiros) {
+            if(resolve(soduku)){
+                imprimirSoduku(soduku);
+            }else{
+                System.out.println("Não deu :(");
+            }
+        }
 
         sc.close();
     }
 
-    private static int[] posicaoLivre(Integer[][] tabuleiro) {
-        int[] posicao = new int[]{VAZIO, VAZIO};
+    private static int[] posicaoLivre(List<List<Integer>> tabuleiro) {
+        int[] posicao = new int[]{-1, -1};
         for (int linha = 0; linha < TAMANHO_TABULEIRO; linha++) {
             for (int coluna = 0; coluna < TAMANHO_TABULEIRO; coluna++) {
-                if (tabuleiro[linha][coluna] == VAZIO) {
+                if (tabuleiro.get(linha).get(coluna) == VAZIO) {
                     posicao = new int[]{linha, coluna};
                     return posicao;
                 }
@@ -58,10 +58,10 @@ public class ResolveSudoku {
         return posicao;
     }
 
-    private static boolean posicaoValida(Integer[][] tabuleiro, int linha, int coluna, int num) {
+    private static boolean posicaoValida(List<List<Integer>> tabuleiro, int linha, int coluna, int num) {
 
         for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
-            if (num == tabuleiro[linha][i] || num == tabuleiro[i][coluna]) {
+            if (num == tabuleiro.get(linha).get(i) || num == tabuleiro.get(i).get(coluna)) {
                 return false;
             }
         }
@@ -70,7 +70,7 @@ public class ResolveSudoku {
         int colunaInicio = (coluna / SUBQUADRADO) * SUBQUADRADO;
         for (int i = linhaInicio; i < linhaInicio + SUBQUADRADO; i++) {
             for (int j = colunaInicio; j < colunaInicio + SUBQUADRADO; j++) {
-                if (tabuleiro[i][j] == num) {
+                if (tabuleiro.get(i).get(j).equals(num)) {
                     return false;
                 }
             }
@@ -79,22 +79,22 @@ public class ResolveSudoku {
         return true;
     }
 
-    private static boolean resolve(Integer[][] soduku){
+    private static boolean resolve(List<List<Integer>> soduku){
         var pos = posicaoLivre(soduku);
         var linha = pos[0];
         var coluna= pos[1];
-        if (linha == VAZIO){
+        if (linha == -1){
             return true;
         }
 
         for (int i = VALOR_MINIMO; i <= TAMANHO_TABULEIRO; i++) {
             if (posicaoValida(soduku, linha, coluna, i)){
-                soduku[linha][coluna] = i;
+                soduku.get(linha).set(coluna, i);
                 if (resolve(soduku)){
                     return true;
                 }
             }
-            soduku[linha][coluna] = VAZIO;
+            soduku.get(linha).set(coluna, VAZIO);
         }
 
         return false;
@@ -103,7 +103,7 @@ public class ResolveSudoku {
     private static void imprimirSoduku(List<List<Integer>> soduku){
         for (int linha = 0; linha < TAMANHO_TABULEIRO ; linha++) {
             for (int coluna = 0; coluna < TAMANHO_TABULEIRO; coluna++) {
-                System.out.printf("%d%s", soduku.get(linha).get(coluna), (linha != TAMANHO_TABULEIRO-1 && coluna == TAMANHO_TABULEIRO-1) ? " " : "");
+                System.out.printf("%d", soduku.get(linha).get(coluna));
             }
             System.out.println();
         }
