@@ -19,7 +19,7 @@ public class AppLCS {
         System.out.printf("%f ms%n", (System.currentTimeMillis() - tempoInicial) / 1000d);
 
         tempoInicial = System.currentTimeMillis();
-        System.out.println("\nLCS é bottom Up: " + LCSBottomUp.lcsBottomUp(X.split(""), Y.split(""), X.length(), Y.length()));
+        System.out.println("\nLCS é Bottom Up: " + LCSBottomUp.lcsBottomUp(X.split(""), Y.split(""), X.length(), Y.length()));
         System.out.printf("%f ms%n", (System.currentTimeMillis() - tempoInicial) / 1000d);
     }
 }
