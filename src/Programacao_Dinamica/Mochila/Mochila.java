@@ -1,23 +1,10 @@
-package Programacao_Dinamica;
+package Programacao_Dinamica.Mochila;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.List;
 
 public class Mochila {
-
-    public static void main(String[] args) {
-        Dictionary<Integer, ItemMochila> s = new Hashtable<>();
-
-        s.put(1, new ItemMochila(6,30));
-        s.put(2, new ItemMochila(3,14));
-        s.put(3, new ItemMochila(4,16));
-        s.put(4, new ItemMochila(2,9));
-
-        System.out.println(mochila(s, s.size(), 10));
-
-    }
 
     public static Integer mochila(Dictionary<Integer, ItemMochila> S, int n, int W){
 
@@ -34,8 +21,6 @@ public class Mochila {
                 }
             }
         }
-
-        System.out.println(m);
 
         return m.get(W).get(n);
         

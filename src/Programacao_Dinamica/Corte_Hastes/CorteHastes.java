@@ -1,4 +1,4 @@
-package Programacao_Dinamica;
+package Programacao_Dinamica.Corte_Hastes;
 
 public class CorteHastes {
 
