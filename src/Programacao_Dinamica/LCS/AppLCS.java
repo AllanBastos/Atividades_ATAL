@@ -27,7 +27,7 @@ public class AppLCS {
 
             case 1: {
                 tempoInicial = System.currentTimeMillis();
-                System.out.println("LCS é: " + LCSREcursivo.lcsRecusivo(X.split(""), Y.split(""), X.length(), Y.length()));
+                System.out.println("LCS é: " + LCSRecursivo.lcsRecusivo(X.split(""), Y.split(""), X.length(), Y.length()));
                 System.out.printf("Tempo de excecução: %f s", (System.currentTimeMillis() - tempoInicial) / 1000d);
                 break;
             }
