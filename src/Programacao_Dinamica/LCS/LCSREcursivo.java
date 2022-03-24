@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class LCSREcursivo {
 
-    public static int lcsRecusivo(String X[], String Y[], int m, int n){
+    public static int lcsRecusivo(String[] X, String[] Y, int m, int n){
         if (m == 0 || n == 0) {
             return 0;
         }
