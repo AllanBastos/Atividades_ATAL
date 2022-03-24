@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class AppLCS {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        long tempoInicial = 0;
+        long tempoInicial;
 
         System.out.print("Insira a sequencia A:");
         String X = sc.nextLine();//"ABCBDAB";
@@ -17,6 +17,11 @@ public class AppLCS {
         System.out.println("\nEscolha o algoritmo \n1 para recursivo\n2 para recursivo memoizado\n3 para programação dinamica");
         int op = sc.nextInt();
 
+
+//        for (int i = 0; i < 8; i++) {
+//            X =  X.concat(X);
+//            Y =  Y.concat(Y);
+//        }
         System.out.println("Iniciando");
         switch (op){
 
